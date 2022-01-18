@@ -3,10 +3,8 @@ package com.vladyslav.CreateReadApp.resource;
 
 import com.vladyslav.CreateReadApp.model.Item;
 import com.vladyslav.CreateReadApp.model.Response;
-import com.vladyslav.CreateReadApp.service.ItemService;
 import com.vladyslav.CreateReadApp.service.ItemServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +23,7 @@ public class ItemResource {
     private final ItemServiceImpl itemService;
 
     @GetMapping
-    ResponseEntity<Response> getServers(){
+    ResponseEntity<Response> getItems(){
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
@@ -38,7 +36,7 @@ public class ItemResource {
     }
 
     @PostMapping("/save")
-    ResponseEntity<Response> saveServers(@RequestBody @Valid Item item){
+    ResponseEntity<Response> saveItems(@RequestBody @Valid Item item){
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
@@ -51,7 +49,7 @@ public class ItemResource {
     }
 
     @GetMapping("/get/{id}")
-    ResponseEntity<Response> getServer(@PathVariable("id") Long id){
+    ResponseEntity<Response> getItem(@PathVariable("id") Long id){
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
@@ -64,7 +62,7 @@ public class ItemResource {
     }
 
     @DeleteMapping("/delete/{id}")
-    ResponseEntity<Response> deleteServer(@PathVariable("id") Long id){
+    ResponseEntity<Response> deleteItems(@PathVariable("id") Long id){
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())
