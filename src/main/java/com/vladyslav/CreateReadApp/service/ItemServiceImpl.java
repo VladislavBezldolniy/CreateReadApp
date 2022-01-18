@@ -13,7 +13,7 @@ import java.util.Collection;
 @Service
 @Transactional
 @Slf4j
-public class ItemServiceImpl implements ItemService{
+public class ItemServiceImpl implements ItemService<Item>{
 
     private final ItemRepo itemRepo;
 
