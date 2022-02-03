@@ -7,6 +7,7 @@ import org.hibernate.Hibernate;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import static javax.persistence.GenerationType.AUTO;
@@ -17,14 +18,19 @@ import static javax.persistence.GenerationType.AUTO;
         name = "ITEM_TYPE",
         discriminatorType = DiscriminatorType.STRING)
 
-public abstract class Item {
+public abstract class Item implements Serializable {
     @Id
     @GeneratedValue(strategy = AUTO)
+    @Column(name = "item_id")
     private long id;
     @NotEmpty(message = "Name cannot be empty or null")
+    @Column(name = "name")
     private String name;
+    @Column(name = "price")
     private double price;
+    @Column(name = "description")
     private String description;
+    @Column(name = "image_url")
     private String imageUrl;
 
     public Item(){}
