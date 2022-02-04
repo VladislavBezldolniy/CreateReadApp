@@ -8,6 +8,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity @NoArgsConstructor
 public class Ammo implements Serializable {
@@ -86,7 +87,7 @@ public class Ammo implements Serializable {
         private final String drMod;
         private final float damageMod;
         private final float value;
-        private final float dollarPerRound;
+        private final float $$perRound;
         private final float batchSize;
         private final float costPerRound;
         private final float weight;
@@ -98,7 +99,7 @@ public class Ammo implements Serializable {
             this.drMod = drMod;
             this.damageMod = damageMod;
             this.value = value;
-            this.dollarPerRound = $$perRound;
+            this.$$perRound = $$perRound;
             this.batchSize = batchSize;
             this.costPerRound = costPerRound;
             this.weight = weight;
@@ -129,7 +130,7 @@ public class Ammo implements Serializable {
         }
 
         public float get$$perRound() {
-            return dollarPerRound;
+            return $$perRound;
         }
 
         public float getBatchSize() {
@@ -145,4 +146,16 @@ public class Ammo implements Serializable {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ammo ammo = (Ammo) o;
+        return id.equals(ammo.id) && caliber == ammo.caliber;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, caliber);
+    }
 }
