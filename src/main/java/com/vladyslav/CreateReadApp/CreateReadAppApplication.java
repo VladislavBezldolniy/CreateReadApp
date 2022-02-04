@@ -21,12 +21,14 @@ public class CreateReadAppApplication {
 		ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(CreateReadAppApplication.class, args);
 		ItemServiceImpl itemService = configurableApplicationContext.getBean(ItemServiceImpl.class);
 
-		/*itemService.create(new MeleeWeapon("Katana", 395, "Bite me", "", Dice.D12));
-		itemService.create(new RangeWeapon("M24", 2345.4, "Protec", ""));
-		*/
+
 
 		AmmoRepo ammoRepository = configurableApplicationContext.getBean(AmmoRepo.class);
 		Arrays.asList(Ammo.Caliber.values()).forEach(caliber -> ammoRepository.save(new Ammo(caliber)));
 
+		itemService.create(new MeleeWeapon("Katana", 395, "A katana is a Japanese sword characterized by a curved, single-edged blade with a circular or squared guard and long grip to accommodate two hands. ",
+				"", Dice.D12));
+		itemService.create(new RangeWeapon("M24", 2345.4, "The M24 Sniper Weapon System or M24 is the military and police version of the Remington Model 700 rifle, M24 being the model name assigned by the United States Army after adoption as their standard sniper rifle in 1988",
+				"", ammoRepository.getById(1L)));
 	}
 }
